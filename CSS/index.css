@@ -1,7 +1,3 @@
-/* html {
-  margin: 0;
-  padding: 0;
-} */
 a {
   text-decoration: none;
   color: inherit;
@@ -10,7 +6,6 @@ a {
 body {
   margin: 0;
   padding: 0;
-  width: fit-content;
   font-family: Monaco, Helvetica, Geneva, "system-ui", Ariel, georgia,
     "sans-serif";
   color: rgb(41, 37, 36);
@@ -22,7 +17,6 @@ body {
   width: auto;
   height: 32px;
   padding-top: 5px;
-  margin-block: 0.8rem 0;
   transition-duration: 0.1s;
 }
 
@@ -38,7 +32,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-block: 0.65rem;
   width: 30px;
   height: 30px;
   border: none;
@@ -50,22 +43,12 @@ body {
 }
 
 .navbar {
-  width: clamp(36rem, 45rem, 100vw);
   display: flex;
   flex-direction: row;
   padding: 0px 32px;
   justify-content: end;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 2px;
-}
-
-header, main, footer {
-  width: fit-content;
-}
-
-#navtabs {
-  padding: 0;
-  margin-block: 0.8rem 0;
 }
 
 .navs {
@@ -103,7 +86,6 @@ header, main, footer {
 .authbtn {
   display: flex;
   margin-left: 1rem;
-  gap: 2.4rem;
   background-color: white;
   color: rgb(56, 56, 56);
   width: 100px;
@@ -124,10 +106,7 @@ header, main, footer {
 
 .saved {
   height: 40px;
-  max-width: 100%;
-  padding: 1.25rem;
-  margin-left: 0.4rem;
-  margin-block: 0.75rem auto;
+  padding: 0.8rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,11 +130,13 @@ header, main, footer {
   justify-content: center;
   align-items: center;
 }
+.savedtext{
+  width: max-content;
+  font-size: 90%;
+}
 
 .flex {
   display: flex;
-  margin-block-start: 0.5rem;
-  gap: 0.8rem;
 }
 
 .flex-col {
@@ -221,20 +202,20 @@ ul {
 }
 
 .slider-item {
-  min-width: calc(45% - 6rem);
+  min-width: calc(50% - 4px);
   scroll-snap-align: start;
 }
 
 .load-more-card {
   display: flex;
-  color: rgb(41, 37, 36);
+  color: rgb(245, 239, 237);
   justify-content: center;
   align-items: center;
   height: calc(100% - 54px);
   border-radius: 6px;
   gap: 8px;
   border: 1px solid rgb(232, 222, 213);
-  background-color: rgb(254, 241, 222);
+  background-color: rgb(255, 136, 25)
 }
 
 .section-tag {
@@ -280,19 +261,16 @@ ul {
 }
 
 .footer {
-  padding: 1rem;
-  margin-inline: auto;
+  padding: 20px;
   display: flex;
-  flex-grow: 1;
   justify-content: center;
   align-items: center;
-  column-gap: 12px;
+  column-gap: 10px;
   border-block-start: 1px solid inherit;
 }
 @media (max-width: 630px) {
   .navbar {
-    padding: 10px;
-    margin-inline: 1.25rem;
+    padding: 10px 0px;
   }
 
   .logo {
@@ -320,10 +298,27 @@ ul {
   .savedtext {
     display: none;
   }
+  .badge-btn{
+    padding: 2px 10px;
+  }
+  .tag-list{
+    grid-template-columns: auto auto auto;
+    font-size: 85%;
+  }
 
   .footer {
-    min-width: fit-content;
-    margin-inline: 6rem;
-    margin-bottom: 2.4rem;
+    padding: 10px 5px 5rem 5px;
+    margin: 0px auto;
+    flex-direction: column;
+    column-gap: 0px;
   }
+  .footer-description {
+    width: 100%;
+    font-size: 90%;
+  }
+}
+@media (max-width:400px) {
+  .tag-list{
+    grid-template-columns: auto auto;
+  }  
 }
