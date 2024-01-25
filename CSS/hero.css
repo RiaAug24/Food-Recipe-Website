@@ -1,9 +1,6 @@
-.herocontainer{
-    padding: 15px 15px;
-}
-.hero{
-    width: 100%;
-    height: 70vh;
+.hero {
+    min-width: 32rem;
+    min-height: 55dvh;
     border-radius: 10px;
     background-repeat: no-repeat;
     background-image: url("../hero1.jpeg");
