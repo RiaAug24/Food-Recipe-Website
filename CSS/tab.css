@@ -1,6 +1,9 @@
 .container {
   padding: 0px 10vw;
-  margin-block-end: 0.6rem;
+}
+#categories{
+  display: flex;
+  flex-direction: row;
 }
 .category {
   display: flex;
@@ -15,10 +18,10 @@
   cursor: pointer;
 }
 .flex {
-  max-width: 1130px;
+  /* max-width: 1130px; */
   width: 100%;
   margin-inline: auto;
-  padding-inline: 0.8;
+  /* padding-inline: 16px; */
 }
 
 .categorytext {
@@ -41,7 +44,7 @@
 
 .grid-list {
   display: grid;
-  margin-inline: auto;
+  margin-inline:auto;
   min-width: 24rem;
   align-items: center;
   max-width: 48rem;
@@ -66,30 +69,32 @@
 
 a.btn.btn-secondary {
   position: absolute;
-  background-color: rgb(243, 215, 163);
+  background-color: rgb(255, 136, 25);
   padding: 0.8rem;
   margin: 1.5rem auto 0 -2.4rem;
   border-radius: 0.2rem;
-  color: rgb(33, 33, 31);
+  color: inherit;
+  font-size: 85%;
+  font-weight: 600;
   max-width: 100%;
 }
 
 a.btn.btn-secondary:hover {
-  background-color: rgb(234, 198, 133);
+  background-color: rgb(255, 176, 102);
 }
 
 .skeleton {
-  background-color: rgb(71, 71, 69);
+  background-color: rgb(89, 87, 86);
   animation: skeleton-loading 0.5s linear infinite alternate;
 }
 
 @keyframes skeleton-loading {
   0% {
-    opacity: 0.25;
+    opacity: 0.2;
   }
 
   100% {
-    opacity: 0.45;
+    opacity: 0.4;
   }
 }
 
@@ -159,7 +164,8 @@ a.btn.btn-secondary:hover {
 }
 
 .card-link:where(:hover, :focus-visible) {
-  color: rgb(187, 95, 20);
+  color: rgb(255, 136, 25);
+  transition-duration: 0.3s;
 }
 
 .card-link::before {
@@ -180,6 +186,7 @@ a.btn.btn-secondary:hover {
 
 .card .meta-item {
   gap: 8px;
+  font-size: 90%;
 }
 
 .card .meta-item .fa-regular .fa-clock {
@@ -192,20 +199,20 @@ a.btn.btn-secondary:hover {
 }
 
 .icon-btn {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
-  color: white;
-  border-radius: 45%;
-  background-color: rgb(244, 150, 62);
-  padding: 0.25rem;
+  color: inherit;
+  background-color: inherit;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-
 .icon-btn:hover {
-  cursor: pointer;
-  background-color: rgb(223, 140, 62);
-  color: inherit;
+  filter: brightness(70%);
 }
 .saved .bookmark-add {
   font-variation-settings: "FILL", 1;
@@ -215,10 +222,18 @@ a.btn.btn-secondary:hover {
   background-color: rgb(255, 136, 25);
 }
 
-@media (max-width: 600px) {
-  .container {
-    min-width: 532px;
-    margin: auto 0;
-    padding: 0.3rem;
+@media (max-width: 630px) {
+  .container{
+    padding: 0px 10px;
+  }
+  #categories{
+    display: grid;
+    grid-auto-flow: column;
+  }
+  .category{
+    width: 120px;
+  }
+  .card-link{
+    font-size: 80%;
   }
 }
