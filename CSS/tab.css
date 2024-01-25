@@ -229,6 +229,7 @@ a.btn.btn-secondary:hover {
   #categories{
     display: grid;
     grid-auto-flow: column;
+    overflow-x: scroll;
   }
   .category{
     width: 120px;
