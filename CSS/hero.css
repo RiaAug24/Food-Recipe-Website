@@ -1,6 +1,9 @@
-.hero {
-    min-width: 32rem;
-    min-height: 55dvh;
+.herocontainer{
+    padding: 15px 15px;
+}
+.hero{
+    width: 100%;
+    height: 70vh;
     border-radius: 10px;
     background-repeat: no-repeat;
     background-image: url("../hero1.jpeg");
@@ -11,8 +14,7 @@
     align-items: center;
     background-position: center center;
 }
-
-.hero-content {
+.hero-content{
     position: relative;
     display: flex;
     justify-content: center;
@@ -20,43 +22,38 @@
     height: inherit;
     z-index: 1;
 }
-
-.hero-form {
+.hero-form{
     display: flex;
     flex-direction: row;
     column-gap: 2vw;
     justify-content: center;
     align-items: center;
 }
-
-.search-field {
+.search-field{
     border: none;
     border-radius: 3px;
     overflow: hidden;
     background-color: white;
-    min-width: 24rem;
+    width: 50vw;
     height: 40px;
-    font-family: Helvetica;
+    font-family: 'Helvetica';
     font-size: inherit;
     padding: 0px 10px 0px 40px;
     outline: none;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px 2px;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.25);
 }
-
-.symbols {
+.symbols{
     position: absolute;
     top: 0px;
     display: flex;
     align-items: center;
     height: 100%;
 }
-
-.recipe-symbol {
+.recipe-symbol{
     padding: 0px 10px;
     color: rgb(70, 70, 70);
 }
-
-.search-btn {
+.search-btn{
     right: 0px;
     border: none;
     border-top-right-radius: 3px;
@@ -64,15 +61,13 @@
     padding: 0px 25px;
     background-color: rgb(255, 136, 25);
     color: white;
-    cursor: pointer;
+    cursor:pointer;
     transition-duration: 0.2s;
 }
-
-.search-btn:hover {
+.search-btn:hover{
     background-color: rgb(228, 121, 20);
 }
-
-.search-field-description {
+.search-field-description{
     position: absolute;
     display: flex;
     justify-content: center;
@@ -82,25 +77,23 @@
     font-weight: 600;
     text-align: center;
     color: rgb(255, 255, 255);
-    text-shadow: rgba(0, 0, 0, 0.9) 0px 0px 5px;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
 }
-
-@media (max-width: 600px) {
-    .hero {
-        height: 45vh;
+@media (max-width:630px) {
+    .hero{
+        height: 40vh;
         background-size: auto 100%;
+        background-position: center end;
     }
-
-    .search {
-        width: 65vw;
+    .search-field{
+        width: 70vw;
+    }
+    .search{
+        width: 70vw;
         height: 30px;
     }
-
-    .searchbtn {
+    .searchbtn{
         padding: 0px 20px;
         font-size: 90%;
     }
-}
-
-@media (max-width: 400px) {
 }
