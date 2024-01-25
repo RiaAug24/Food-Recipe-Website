@@ -10,6 +10,7 @@ a {
 body {
   margin: 0;
   padding: 0;
+  width: fit-content;
   font-family: Monaco, Helvetica, Geneva, "system-ui", Ariel, georgia,
     "sans-serif";
   color: rgb(41, 37, 36);
@@ -49,13 +50,17 @@ body {
 }
 
 .navbar {
-  min-width: 32rem;
+  width: clamp(36rem, 45rem, 100vw);
   display: flex;
   flex-direction: row;
   padding: 0px 32px;
   justify-content: end;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px 2px;
+}
+
+header, main, footer {
+  width: fit-content;
 }
 
 #navtabs {
@@ -276,7 +281,7 @@ ul {
 
 .footer {
   padding: 1rem;
-  place-self: center;
+  margin-inline: auto;
   display: flex;
   flex-grow: 1;
   justify-content: center;
