@@ -202,7 +202,7 @@ ul {
 }
 
 .slider-item {
-  min-width: calc(50% - 4px);
+  min-width: calc(45% - 20px);
   scroll-snap-align: start;
 }
 
@@ -261,7 +261,7 @@ ul {
 }
 
 .footer {
-  padding: 20px;
+  padding: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
