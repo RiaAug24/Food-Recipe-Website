@@ -171,7 +171,7 @@ const addTabContent = ($currentTabBtn, $currentTabPanel) => {
 
       $currentTabPanel.innerHTML += `
 
-      <a href="recipe.html" class="btn btn-secondary label-large has-state">Show more</a>
+      <a href="./recipe.html?mealType=${$currentTabBtn.textContent.trim().toLowerCase()}" class="btn btn-secondary label-large has-state">Show more</a>
       `;
 
     });
