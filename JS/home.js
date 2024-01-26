@@ -4,7 +4,6 @@
  * API Setup
  */
 
-
 window.ACCESS_POINT = "https://api.edamam.com/api/recipes/v2";
 
 const APP_ID = "1d56952c";
@@ -116,21 +115,23 @@ const addTabContent = ($currentTabBtn, $currentTabPanel) => {
 
   fetchData(
     [
-      ["mealType", $currentTabBtn.textContent.trim().toLowerCase()], ...cardQueries],
-    
-      function (data) {
+      ["mealType", $currentTabBtn.textContent.trim().toLowerCase()],
+      ...cardQueries,
+    ],
+
+    function (data) {
       //console.log(data);
 
       $currentTabPanel.innerHTML = "";
 
       for (let i = 0; i < 12; i++) {
         const {
-          recipe: { 
-            image, 
-            label: title, 
-            totalTime: cookingTime, 
-            uri},
+          recipe: { image, label: title, totalTime: cookingTime, uri },
         } = data.hits[i];
+
+        const recipeId = uri.slice(uri.lastIndexOf("_") + 1);
+
+        const isSaved = window.localStorage.getItem(`foodyz-recipe${recipeId}`);
 
         const $card = document.createElement("div");
         $card.classList.add("card");
@@ -143,16 +144,20 @@ const addTabContent = ($currentTabBtn, $currentTabPanel) => {
 
         <div class="card-body">
           <h3 class="title-small">
-            <a href="detail.html" class="card-link">${title ?? "Untitled"}</a>
+            <a href="detail.html?recipe=${recipeId}" class="card-link">${
+          title ?? "Untitled"
+        }</a>
           </h3>
           <div class="meta-wrapper">
             <div class="meta-item">
               <span aria-hidden="true">
                 <i class="fa-regular fa-clock"></i></span>
               <span class="label-medium" style="margin-left: 0.25rem">
-                ${cookingTime || "< 1"} minutes</span>
+                ${getTime(cookingTime).time || "< 1"} ${
+          getTime(cookingTime).timeUnit
+        }</span>
             </div>
-            <button class="icon-btn has-state removed" aria-label="Add to saved recipes">
+            <button class="icon-btn has-state ${isSaved ? "saved" : "removed"}" aria-label="Add to saved recipes" onclick="saveRecipe(this, '${recipeId}')">
               <span class="bookmark-add" aria-hidden="true">
                 <i class="fa-regular fa-bookmark"></i>
               </span>
@@ -172,10 +177,45 @@ const addTabContent = ($currentTabBtn, $currentTabPanel) => {
 
       $currentTabPanel.innerHTML += `
 
-      <a href="./recipe.html?mealType=${$currentTabBtn.textContent.trim().toLowerCase()}" class="btn btn-secondary label-large has-state">Show more</a>
+      <a href="./recipe.html?mealType=${$currentTabBtn.textContent
+        .trim()
+        .toLowerCase()}" class="btn btn-secondary label-large has-state">Show more</a>
       `;
-
-    });
+    }
+  );
 };
 
 addTabContent($lastActiveTabBtn, $lastActiveTabPanel);
+
+const getTime = (minute) => {
+  const hour = Math.floor(minute / 60);
+  const day = Math.floor(hour / 24);
+
+  const time = day || hour || minute;
+  const unitIndex = [day, hour, minute].lastIndexOf(time);
+  const timeUnit = ["days", "hours", "minutes"][unitIndex];
+
+  return { time, timeUnit };
+};
+
+const ROOT = "https://api.edamam.com/api/recipes/v2";
+window.saveRecipe = function (element, recipeId) {
+  const isSaved = window.localStorage.getItem(`foodyz-recipe${recipeId}`);
+  ACCESS_POINT = `${ROOT}/${recipeId}`;
+
+  if (!isSaved) {
+    fetchData(cardQueries, function (data) {
+      window.localStorage.setItem(
+        `foodyz-recipe${recipeId}`,
+        JSON.stringify(data)
+      );
+      element.classList.toggle("saved");
+      element.classList.toggle("removed");
+    });
+    ACCESS_POINT = ROOT;
+  } else {
+    window.localStorage.removeItem(`foodyz-recipe${recipeId}`);
+    element.classList.toggle("saved");
+    element.classList.toggle("removed");
+  }
+};
