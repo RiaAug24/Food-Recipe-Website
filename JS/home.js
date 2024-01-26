@@ -157,7 +157,9 @@ const addTabContent = ($currentTabBtn, $currentTabPanel) => {
           getTime(cookingTime).timeUnit
         }</span>
             </div>
-            <button class="icon-btn has-state ${isSaved ? "saved" : "removed"}" aria-label="Add to saved recipes" onclick="saveRecipe(this, '${recipeId}')">
+            <button class="icon-btn has-state ${
+              isSaved ? "saved" : "removed"
+            }" aria-label="Add to saved recipes" onclick="saveRecipe(this, '${recipeId}')">
               <span class="bookmark-add" aria-hidden="true">
                 <i class="fa-regular fa-bookmark"></i>
               </span>
@@ -219,3 +221,7 @@ window.saveRecipe = function (element, recipeId) {
     element.classList.toggle("removed");
   }
 };
+
+/**
+ * Fetch data for slider card
+ */
