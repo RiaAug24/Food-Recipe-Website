@@ -4,6 +4,7 @@
  * API Setup
  */
 
+
 window.ACCESS_POINT = "https://api.edamam.com/api/recipes/v2";
 
 const APP_ID = "1d56952c";
