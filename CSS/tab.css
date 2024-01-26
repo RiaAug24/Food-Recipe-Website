@@ -206,13 +206,13 @@ a.btn.btn-secondary:hover {
   justify-content: center;
   border: none;
   color: inherit;
-  background-color: inherit;
+  background-color: rgb(255, 136, 25);
   border-radius: 50%;
   cursor: pointer;
 }
 
 .icon-btn:hover {
-  filter: brightness(70%);
+  background-color: rgb(255, 176, 102);
 }
 .saved .bookmark-add {
   font-variation-settings: "FILL", 1;
