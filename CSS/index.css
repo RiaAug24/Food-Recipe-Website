@@ -202,7 +202,6 @@ ul {
 }
 
 .slider-item {
-  min-width: calc(45% - 4px);
   scroll-snap-align: start;
 }
 

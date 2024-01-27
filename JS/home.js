@@ -225,3 +225,23 @@ window.saveRecipe = function (element, recipeId) {
 /**
  * Fetch data for slider card
  */
+
+let cuisneType = ["Asian", "French"];
+const $sliderSections = document.querySelectorAll("[data-slider-section]");
+
+for (const [index, $sliderSection] of $sliderSections.entries()) {
+  $sliderSection.innerHTML = `
+  <div class="container">
+     <h2 class="section-title headline-small" id="slider-label-1">
+    Latest ${cuisneType[index]} Recipes
+     </h2>
+     <div class="slider">
+     <ul class="slider-wrapper" data-slider-wrapper>
+     ${`<li class="slider-item">${$skeletonCard}</li>`.repeat(10)}
+     </ul>
+  </div>
+  `;
+
+  
+  
+}

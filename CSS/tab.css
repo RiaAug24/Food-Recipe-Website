@@ -100,7 +100,7 @@ a.btn.btn-secondary:hover {
 
 .skeleton-card .card-banner {
   aspect-ratio: 1;
-  width: 100%;
+  width: 300px;
   border-radius: 0.2rem;
 }
 
@@ -236,6 +236,10 @@ a.btn.btn-secondary:hover {
   }
   .card-link{
     font-size: 80%;
+  }
+
+  .skeleton-card .card-banner  {
+    width: 144px;
   }
 
   .grid-list {
