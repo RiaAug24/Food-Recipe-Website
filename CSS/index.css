@@ -202,12 +202,17 @@ ul {
 }
 
 .slider-item {
-  display: contents;
   scroll-snap-align: start;
+}
+
+.slider-item > * {
+  width: 250px;
 }
 
 .load-more-card {
   display: flex;
+  width: 250px;
+  height: 250px;
   color: rgb(245, 239, 237);
   justify-content: center;
   align-items: center;

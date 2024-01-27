@@ -244,26 +244,79 @@ for (const [index, $sliderSection] of $sliderSections.entries()) {
 
   const $sliderWrapper = $sliderSection.querySelector("[data-slider-wrapper]");
 
-  fetchData([ ...cardQueries, ["cuisineType", cuisineType[index]]], function (data) {
-
+  fetchData(
+    [...cardQueries, ["cuisineType", cuisineType[index]]],
+    function (data) {
       $sliderWrapper.innerHTML = "";
 
-      data.hits.map (item => {
+      data.hits.map((item) => {
+        const {
+          recipe: { image, label: title, totalTime: cookingTime, uri },
+        } = item;
 
-          const {
-            recipe : {
-              image,
-              label: title,
-              totalTime: cookingTime,
-              uri
-            }
-          } = item;
+        const recipeId = uri.slice(uri.lastIndexOf("_") + 1);
 
-          
+        const isSaved = window.localStorage.getItem(`foodyz-recipe${recipeId}`);
 
+        const $sliderItem = document.createElement("li");
+
+        $sliderItem.classList.add("slider-item");
+
+        $sliderItem.innerHTML = `
+
+        <div class="card">
+        <figure class="card-media img-holder">
+        <img src="${image}" loading="lazy" class="img-cover" alt="${title}" />
+      </figure>
+
+      <div class="card-body">
+        <h3 class="title-small">
+          <a href="detail.html?recipe=${recipeId}" class="card-link">${
+        title ?? "Untitled"
+      }</a>
+        </h3>
+        <div class="meta-wrapper">
+          <div class="meta-item">
+            <span aria-hidden="true">
+              <i class="fa-regular fa-clock"></i></span>
+            <span class="label-medium" style="margin-left: 0.25rem">
+              ${getTime(cookingTime).time || "< 1"} ${
+        getTime(cookingTime).timeUnit
+      }</span>
+          </div>
+          <button class="icon-btn has-state ${
+            isSaved ? "saved" : "removed"
+          }" aria-label="Add to saved recipes" onclick="saveRecipe(this, '${recipeId}')">
+            <span class="bookmark-add" aria-hidden="true">
+              <i class="fa-regular fa-bookmark"></i>
+            </span>
+
+            <span class="bookmark-remove" aria-hidden="true">
+              <i class="fa-regular fa-trash-can"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+      </div>
+      `;
+     
+       $sliderWrapper.appendChild($sliderItem);     
 
       });
 
+      $sliderWrapper.innerHTML += `
 
-  });
+      <li class="slider-item" data-slider-item>
+      <a href="recipe.html?cuisineType=${cuisineType[index].toLowerCase()}" class="load-more-card has-state">
+        <span class="label-large">Show more</span>
+        <span aria-hidden="true"
+          ><i class="fa-regular fa-share-from-square"></i
+        ></span>
+      </a>
+    </li>
+
+      `;
+     
+    }
+  );
 }
