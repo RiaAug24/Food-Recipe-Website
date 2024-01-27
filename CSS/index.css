@@ -236,6 +236,11 @@ ul {
   max-width: max-content;
   padding-inline: 16px;
   align-items: center;
+
+}
+
+.badge-btn:where(:focus, :hover) {
+  border-bottom: 2px solid rgb(255, 136, 25);
 }
 
 .tag {
