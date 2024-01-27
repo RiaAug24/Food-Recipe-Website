@@ -243,5 +243,4 @@ for (const [index, $sliderSection] of $sliderSections.entries()) {
   `;
 
   
-  
 }
