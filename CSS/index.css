@@ -202,6 +202,7 @@ ul {
 }
 
 .slider-item {
+  display: contents;
   scroll-snap-align: start;
 }
 
@@ -230,7 +231,7 @@ ul {
   height: 40px;
   display: flex;
   border-radius: 1.5rem;
-  background-color: rgb(250, 187, 92);
+  background-color: inherit;
   color: inherit;
   max-width: max-content;
   padding-inline: 16px;

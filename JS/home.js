@@ -226,14 +226,14 @@ window.saveRecipe = function (element, recipeId) {
  * Fetch data for slider card
  */
 
-let cuisneType = ["Asian", "French"];
+let cuisineType = ["Asian", "French"];
 const $sliderSections = document.querySelectorAll("[data-slider-section]");
 
 for (const [index, $sliderSection] of $sliderSections.entries()) {
   $sliderSection.innerHTML = `
   <div class="container">
      <h2 class="section-title headline-small" id="slider-label-1">
-    Latest ${cuisneType[index]} Recipes
+    Latest ${cuisineType[index]} Recipes
      </h2>
      <div class="slider">
      <ul class="slider-wrapper" data-slider-wrapper>
@@ -242,5 +242,28 @@ for (const [index, $sliderSection] of $sliderSections.entries()) {
   </div>
   `;
 
-  
+  const $sliderWrapper = $sliderSection.querySelector("[data-slider-wrapper]");
+
+  fetchData([ ...cardQueries, ["cuisineType", cuisineType[index]]], function (data) {
+
+      $sliderWrapper.innerHTML = "";
+
+      data.hits.map (item => {
+
+          const {
+            recipe : {
+              image,
+              label: title,
+              totalTime: cookingTime,
+              uri
+            }
+          } = item;
+
+          
+
+
+      });
+
+
+  });
 }
