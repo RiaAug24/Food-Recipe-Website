@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="CSS/tab.css" />
     <link rel="stylesheet" href="CSS/downbar.css" />
     <link rel="icon" href="/favicon/favicon.png" />
-    <script src="JS/app.js" defer></script>
-    <script src="JS/home.js" defer></script>
+    <script src="JS/app.js" type="module" defer></script>
+    <script src="JS/home.js" type="module" defer></script>
     <!-- fontawesome icons-->
     <script
       src="https://kit.fontawesome.com/e12a4fcb89.js"
@@ -29,8 +29,20 @@
         class="navs flex flex-row"
         style="justify-content: center; align-items: center"
       >
-        <div class="nav-tabs" id="home" onclick="changeTab(0)">Home</div>
-        <div class="nav-tabs" id="recipe" onclick="changeTab(1)">Recipes</div>
+        <a
+          href="index.html"
+          class="nav-tabs has-state active"
+          id="home"
+          onclick="changeTab(0)"
+          >Home</a
+        >
+        <a
+          href="recipe.html"
+          class="nav-tabs has-state"
+          id="recipe"
+          onclick="changeTab(1)"
+          >Recipes</a
+        >
       </div>
       <div class="navs authbtns">
         <!-- <button class="authbtn">Register</button>
@@ -44,35 +56,36 @@
               <i class="fa-regular fa-sun"></i>
             </div>
           </div>
-          <button class="saved">
+          <a href="saved-recipes.html" class="saved">
             <i class="fa-regular fa-bookmark"></i>
             <div class="savedtext">Saved Recipes</div>
-          </button>
+          </a>
         </div>
       </div>
     </nav>
 
     <!-- Downnav -->
     <nav class="downnav" id="downnav">
-      <div class="downnav-tabs" id="downnav-tabs">
-        <div class="downnav-tab" onClick="changeDTab(0)">
-          <div class="downnav-symbol"><i class="fa-solid fa-burger"></i></div>
-          <div class="downnavtext">Recipe</div>
-        </div>
-        <div class="downnav-tab" onClick="changeDTab(1)">
+      <ul class="downnav-tabs" id="downnav-tabs">
+        <li class="downnav-tab" onClick="changeDTab(0)">
           <div class="downnav-symbol">
-            <i class="fa-solid fa-house"></i>
+            <a href="recipe.html"><i class="fa-solid fa-burger"></i></a></div>
+          <div class="downnavtext">Recipe</div>
+        </li>
+        <li class="downnav-tab" onClick="changeDTab(1)">
+          <div class="downnav-symbol"><a href="index.html">
+            <i class="fa-solid fa-house"></i></a>
           </div>
           <div class="downnavtext">Home</div>
-        </div>
-        <div class="downnav-tab" onClick="changeDTab(2)">
-          <div class="downnav-symbol">
-            <i class="fa-regular fa-bookmark"></i>
+        </li>
+        <li class="downnav-tab" onClick="changeDTab(2)">
+          <div class="downnav-symbol"><a href="saved-recipes.html">
+            <i class="fa-regular fa-bookmark"></i></a>
           </div>
           <div class="downnavtext">Saved</div>
-        </div>
-      </div>
-    </nav>
+        </li>
+      </ul>
+    </nav> 
 
     <!-- Hero -->
     <section class="" style="padding: 15px 15px">

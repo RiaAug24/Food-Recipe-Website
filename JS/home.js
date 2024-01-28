@@ -4,30 +4,9 @@
  * API Setup
  */
 
-window.ACCESS_POINT = "https://api.edamam.com/api/recipes/v2";
-
-const APP_ID = "1d56952c";
-const API_KEY = "1381bfc880a44ab80149dd1489b90f1e";
-const TYPE = "public";
-const fetchData = async function (queries, successCallBack) {
-  const query = queries
-    ?.join("&")
-    .replace(/,/g, "=")
-    .replace(/ /g, "%20")
-    .replace(/\+/g, "%2B");
-
-  const url = `${ACCESS_POINT}?app_id=${APP_ID}&app_key=${API_KEY}&type=${TYPE}${
-    query ? `&${query}` : ""
-  }`;
-
-  const response = await fetch(url);
-
-  if (response.ok) {
-    const data = await response.json();
-    successCallBack(data);
-  }
-};
-
+import {fetchData} from "./app.js"
+import { cardQueries } from "./app.js";
+import { $skeletonCard } from "./app.js";
 /**
  * home page search
  */
@@ -85,22 +64,6 @@ addEventOnElements($tabBtns, "click", function () {
   addTabContent(this, $currentTabPanel);
 });
 
-const cardQueries = [
-  ["field", "uri"],
-  ["field", "label"],
-  ["field", "image"],
-  ["field", "totalTime"],
-];
-
-const $skeletonCard = `
-   <li class="card skeleton-card">
-     <div class="skeleton card-banner"></div>
-
-      <div class="card-body">
-        <div class="skeleton card-title"></div>
-        <div class="skeleton card-text"></div>
-      </div>
-  </li>`;
 
 const addTabContent = ($currentTabBtn, $currentTabPanel) => {
   const $gridList = document.createElement("div");
@@ -213,12 +176,14 @@ window.saveRecipe = function (element, recipeId) {
       );
       element.classList.toggle("saved");
       element.classList.toggle("removed");
+      showNotificationMessage("Added to Saved Recipes")
     });
     ACCESS_POINT = ROOT;
   } else {
     window.localStorage.removeItem(`foodyz-recipe${recipeId}`);
     element.classList.toggle("saved");
     element.classList.toggle("removed");
+    showNotificationMessage("Removed from Saved Recipes")
   }
 };
 
@@ -272,8 +237,8 @@ for (const [index, $sliderSection] of $sliderSections.entries()) {
       <div class="card-body">
         <h3 class="title-small">
           <a href="detail.html?recipe=${recipeId}" class="card-link">${
-        title ?? "Untitled"
-      }</a>
+          title ?? "Untitled"
+        }</a>
         </h3>
         <div class="meta-wrapper">
           <div class="meta-item">
@@ -281,8 +246,8 @@ for (const [index, $sliderSection] of $sliderSections.entries()) {
               <i class="fa-regular fa-clock"></i></span>
             <span class="label-medium" style="margin-left: 0.25rem">
               ${getTime(cookingTime).time || "< 1"} ${
-        getTime(cookingTime).timeUnit
-      }</span>
+          getTime(cookingTime).timeUnit
+        }</span>
           </div>
           <button class="icon-btn has-state ${
             isSaved ? "saved" : "removed"
@@ -299,15 +264,16 @@ for (const [index, $sliderSection] of $sliderSections.entries()) {
       </div>
       </div>
       `;
-     
-       $sliderWrapper.appendChild($sliderItem);     
 
+        $sliderWrapper.appendChild($sliderItem);
       });
 
       $sliderWrapper.innerHTML += `
 
       <li class="slider-item" data-slider-item>
-      <a href="recipe.html?cuisineType=${cuisineType[index].toLowerCase()}" class="load-more-card has-state">
+      <a href="recipe.html?cuisineType=${cuisineType[
+        index
+      ].toLowerCase()}" class="load-more-card has-state">
         <span class="label-large">Show more</span>
         <span aria-hidden="true"
           ><i class="fa-regular fa-share-from-square"></i
@@ -316,7 +282,20 @@ for (const [index, $sliderSection] of $sliderSections.entries()) {
     </li>
 
       `;
-     
     }
   );
+}
+
+const $snackbarContainer = document.createElement("div");
+$snackbarContainer.classList.add("snackbar-container");
+document.body.appendChild($snackbarContainer);
+
+function showNotificationMessage(message) {
+  const $snackbar = document.createElement("div");
+  $snackbar.classList.add("snackbar");
+  $snackbar.innerHTML = `
+  <p>${message}</p>
+  `;
+  $snackbarContainer.appendChild($snackbar);
+  $snackbar.addEventListener("animationend", e => $snackbarContainer.removeChild($snackbar));
 }
